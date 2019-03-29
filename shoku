@@ -1,0 +1,37 @@
+#!/bin/bash
+
+IP="192.168.1.2"
+PORT="8060"
+CALL="curl -X POST ${IP}:${PORT}/keypress/"
+
+START=1
+
+echo "Welcome to shOKU, Terminal Based Roku Remote"
+	echo "Use Arrow Keys to Move around"
+	echo "Enter for select"
+	echo "Home or h for Home"
+	echo "p to Pause and Play"
+	echo "b to go Back"
+	echo "f to Fast Forward"
+	echo "r to Rewind"
+	echo "To Quit press q or e"
+
+
+while(($START)); do
+	read -s -n 1 key  # -s: do not echo input character. -n 1: read only 1 character (separate with space)
+	
+	if [[ $key = "e" || $key = "q" ]]; then 
+	    echo 'Bye!';
+	    START=0;
+	elif [[ $key = "A" ]]; then ${CALL}up;
+	elif [[ $key = "B" ]]; then ${CALL}down;
+	elif [[ $key = "C" ]]; then ${CALL}right;
+	elif [[ $key = "D" ]]; then ${CALL}left;
+	elif [[ $key = "" ]]; then ${CALL}select;
+	elif [[ $key = "p" ]]; then ${CALL}play;
+	elif [[ $key = "f" ]]; then ${CALL}Fwd;
+	elif [[ $key = "r" ]]; then ${CALL}Rev;
+	elif [[ $key = "' '" || $key = "b" ]]; then ${CALL}back;
+	elif [[ $key = "H" || $key = "h" ]]; then ${CALL}home;
+	fi
+done
