@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IP="192.168.1.2"
+IP="192.168.0.98"
 PORT="8060"
 CALL="curl -X POST ${IP}:${PORT}/keypress/"
 
@@ -14,6 +14,9 @@ echo "Welcome to shOKU, Terminal Based Roku Remote"
 	echo "b to go Back"
 	echo "f to Fast Forward"
 	echo "r to Rewind"
+	echo "1 = volume down"
+	echo "2 = volume up"
+	echo "7 = power"
 	echo "To Quit press q or e"
 
 
@@ -27,6 +30,9 @@ while(($START)); do
 	elif [[ $key = "B" ]]; then ${CALL}down;
 	elif [[ $key = "C" ]]; then ${CALL}right;
 	elif [[ $key = "D" ]]; then ${CALL}left;
+	elif [[ $key = "1" ]]; then ${CALL}volumedown;
+	elif [[ $key = "2" ]]; then ${CALL}volumeup;
+	elif [[ $key = "7" ]]; then ${CALL}power;
 	elif [[ $key = "" ]]; then ${CALL}select;
 	elif [[ $key = "p" ]]; then ${CALL}play;
 	elif [[ $key = "f" ]]; then ${CALL}Fwd;
